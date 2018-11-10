@@ -12,11 +12,12 @@ RSpec.describe 'Video Encoder Service' do
     encoded_path = 'fixtures/video_files/tmp/star_trails.mp4'
 
     video  = Video.new( dest_file_path )
-    Encoder.encode(video)
+    end_path = Encoder.encode(video)
 
     expect(File.file?(video_path)).to eq(false)
     expect(File.file?(encoded_path)).to eq(true)
     expect(File.extname(encoded_path)).to eq('.mp4')
+    expect(end_path).to eq(encoded_path)
 
     # Clean Up
     File.delete(encoded_path)

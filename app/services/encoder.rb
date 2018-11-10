@@ -11,6 +11,7 @@ class Encoder
     new_path = encoder.encoded_path
     movie.transcode(new_path)
     encoder.remove_old_episode
+    new_path
   end
 
   def encoded_path

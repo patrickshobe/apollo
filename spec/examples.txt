@@ -1,3 +1,0 @@
-example_id                           | status | run_time     |
------------------------------------- | ------ | ------------ |
-./spec/services/encoder_spec.rb[1:1] | passed | 5.57 seconds |
