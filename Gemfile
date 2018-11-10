@@ -35,6 +35,11 @@ gem 'faraday'
 
 # FFMPEG to encode
 gem 'streamio-ffmpeg'
+# Redis for background job queue
+gem 'sidekiq'
+
+# For the Redis dashboard
+gem 'sinatra'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
