@@ -11,12 +11,17 @@ class Encoder
     new_path = encoder.encoded_path
     movie.transcode(new_path)
     encoder.remove_old_episode
+
     new_path
   end
 
   def local_path
     short_path = @path.split ( /\/media\/pat\// )
-    ENV['LOCAL_PATH'] + short_path
+    ENV['LOCAL_PATH'] + short_path.last
+  end
+
+  def update_on_complete
+    ArtemisUpdater.ship_it(@artemis_id)
   end
 
   def encoded_path
