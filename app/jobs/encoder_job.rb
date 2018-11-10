@@ -1,8 +1,8 @@
 class EncoderJob < ApplicationJob
   queue_as :default
 
-  def perform(video)
-    Encoder.encode(video)
+  def perform( path, artemis_id )
+    Encoder.encode( path, artemis_id )
   end
 end
 
