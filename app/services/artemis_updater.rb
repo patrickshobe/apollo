@@ -5,7 +5,7 @@ class ArtemisUpdater
   end
 
   def update
-    conn.get(url: "encodes/#{@id}")
+    conn.put "api/v1/encode_records/#{@id}"
   end
 
   def self.ship_it(artemis_id)

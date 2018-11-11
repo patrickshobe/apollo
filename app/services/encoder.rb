@@ -5,18 +5,17 @@ class Encoder
     @artemis_id = artemis_id
   end
 
-  def self.encode(path)
-    encoder = new(path)
-    movie = FFMPEG::Movie.new(path)
+  def self.encode(path, artemis_id)
+    encoder = new(path, artemis_id)
+    movie = FFMPEG::Movie.new(encoder.local_path)
     new_path = encoder.encoded_path
     movie.transcode(new_path)
     encoder.remove_old_episode
-
-    new_path
+    encoder.update_on_complete
   end
 
   def local_path
-    short_path = @path.split ( /\/media\/pat\// )
+    short_path = @path.split ( /\/Users\/pat\// )
     ENV['LOCAL_PATH'] + short_path.last
   end
 
@@ -25,7 +24,7 @@ class Encoder
   end
 
   def encoded_path
-    @path.chop.chop.chop + 'mp4'
+    local_path.chop.chop.chop + 'mp4'
   end
 
   def remove_old_episode
