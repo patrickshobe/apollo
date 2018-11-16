@@ -16,7 +16,7 @@ class ArtemisUpdater
   def conn
     Faraday.new(:url => ENV['ARTEMIS_PATH'] ) do |f|
       f.adapter  Faraday.default_adapter  # make requests with Net::HTTP
-      f.header['IDENTITY'] = ENV['IDENTITY']
+      f.headers['IDENTITY'] = ENV['IDENTITY']
     end
   end
 end

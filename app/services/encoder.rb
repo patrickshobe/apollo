@@ -15,7 +15,7 @@ class Encoder
   end
 
   def local_path
-    short_path = @path.split ( /\/Users\/pat\// )
+    short_path = @path.split ( /\/media\/pat/ )
     ENV['LOCAL_PATH'] + short_path.last
   end
 
