@@ -7,16 +7,29 @@ class Encoder
 
   def self.encode(path, artemis_id)
     encoder = new(path, artemis_id)
-    movie = FFMPEG::Movie.new(encoder.local_path)
-    new_path = encoder.encoded_path
-    movie.transcode(new_path)
-    encoder.remove_old_episode
+    if encoder.exist?
+      movie = FFMPEG::Movie.new(encoder.local_path)
+      new_path = encoder.encoded_path
+      movie.transcode(new_path)
+      encoder.remove_old_episode
+      encoder.update_on_complete
+    end
+    encoder.update_on_complete
+  end
+
+
+  def self.rescue(path, artemis_id)
+    encoder = new(path, artemis_id)
     encoder.update_on_complete
   end
 
   def local_path
     short_path = @path.split ( /\/media\/pat/ )
     ENV['LOCAL_PATH'] + short_path.last
+  end
+
+  def exist?
+    File.file?(local_path)
   end
 
   def update_on_complete
